@@ -24,6 +24,19 @@ export class Cart {
           this.cartPrice += (l.quantity * l.product.MSRP);
       }) 
   }
+  updateProduct(product : Product, quantity : number){
+    let line = this.lines.find(line => line.product.productCode === product.productCode);
+    if (line !== undefined){
+     line.quantity = Number(quantity);
+    }
+    this.recarculate();
+  }
+
+  deleteProduct(productCode : string){
+    let index = this.lines.findIndex(line => line.product.productCode === productCode);
+    this.lines.splice(index, 1);
+    this.recarculate();
+  }
 
 }
 

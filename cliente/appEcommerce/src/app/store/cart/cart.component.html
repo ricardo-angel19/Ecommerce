@@ -1,15 +1,40 @@
 <app-nav></app-nav> 
   <!-- Page Content -->
   <div class="container">
-
     <div class="row">
-
+      <h1>SHOPPING CART</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Sub-Total</th>
+            <th scope="col">Cancel</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let line of cart.lines">
+          <tr>
+            <td>{{line.product.productName}}</td>
+            <td>{{line.product.MSRP | currency}}</td>
+            <td>
+              <input type="number" [value]="line.quantity" (change)="cart.updateProduct(line.product, $event.target.value)">
+            </td>
+            <td>
+              {{line.lineTotal | currency}}
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger" (click)="cart.deleteProduct(productCode)">Cancel</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>TOTAL</th>
+            <th>{{cart.cartPrice | currency}}</th>
+          </tr>
+        </tfoot>
+      </table>
 
     </div>
-    <!-- /.row -->
-
   </div>
-  <!-- /.container -->
-
-
-<app-footer></app-footer>
