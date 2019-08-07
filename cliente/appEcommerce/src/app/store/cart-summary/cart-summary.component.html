@@ -1,0 +1,14 @@
+<div class="pull-xs-rigth">
+  <small>
+      <button class="btn btn-warning" [disabled]="cart.itemCount == 0" [routerLink]="['/cart']" routerLinkActive="router-link-active">
+    <span *ngIf="cart.itemCount > 0">
+      {{cart.itemCount}} item (s)
+      {{cart.cartPrice | currency: "USD": true: "2.2-2"}}
+    </span>
+    <span *ngIf="cart.itemCount == 0" class="color">
+      (empty)
+    </span>
+    <img src="https://image.flaticon.com/icons/svg/33/33488.svg" class="img-fluid" alt="Responsive image" width="30" height="30">
+    </button>      
+  </small>  
+</div>     
