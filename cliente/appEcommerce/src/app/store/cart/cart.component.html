@@ -16,15 +16,17 @@
         <tbody *ngFor="let line of cart.lines">
           <tr>
             <td>{{line.product.productName}}</td>
-            <td>{{line.product.MSRP | currency}}</td>
+            <td>{{line.product.MSRP | currency}}</td> 
             <td>
               <input type="number" [value]="line.quantity" (change)="cart.updateProduct(line.product, $event.target.value)">
             </td>
-            <td>
-              {{line.lineTotal | currency}}
+            <td>  
+              {{line.lineTotal | currency}} 
             </td>
             <td>
-              <button type="button" class="btn btn-danger" (click)="cart.deleteProduct(productCode)">Cancel</button>
+              <button type="button" class="btn btn-danger" (click)="cart.deleteProduct(productCode)">
+                  <i class="fas fa-shopping-cart"></i>
+              </button>
             </td>
           </tr>
         </tbody>
