@@ -17,4 +17,11 @@ export class ProductDatasourceService {
   getProducts(): any {
     return this.httpClient.get(this.basUrl + '/products');
   }
+  getOrders(): any {
+    return this.httpClient.get(`${ this.basUrl }/orders`);
+  }
+
+  getOrderDetails(): any {
+    return this.httpClient.get(`${ this.basUrl }/order-details`);
+  }
 }

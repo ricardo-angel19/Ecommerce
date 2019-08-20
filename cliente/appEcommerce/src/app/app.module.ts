@@ -6,11 +6,13 @@ import { StoreModule } from './store/store.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './store/nav/nav.component';
 import { CartSummaryComponent } from './store/cart-summary/cart-summary.component';
+import { FooterComponent } from './store/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent, 
     NavComponent,
-    CartSummaryComponent
+    CartSummaryComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

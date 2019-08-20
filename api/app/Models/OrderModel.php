@@ -3,6 +3,60 @@ namespace app\Models;
 
 class OrderModel extends Models{
 
+
+  public function getOrders() {
+    $sth = $this->db->pdo->prepare('SELECT 
+      orderNumber,
+      orderDate,
+      requiredDate,
+      shippedDate,
+      status,
+      comments,
+      customerNumber FROM orders
+      ORDER BY shippedDate DESC'
+    );
+    $sth->execute();
+    if (!is_null($sth->errorInfo()[2]) ) {
+      return array(
+        'success' => false,
+        'description' => $sth->errorInfo()[2]
+      );
+    } else if (empty($sth)) {
+      return array('notFound' => true, 'description' => 'The result is empty');
+    }
+    return array(
+      'success' => true,
+      'description' => 'The orders were found',
+      'orders' => $sth->fetchAll($this->db->pdo::FETCH_ASSOC)
+    );
+  }
+  public function getOrdersDetails() {
+    $sth = $this->db->pdo->prepare('SELECT 
+      orderNumber,
+      products.productName,
+      orderdetails.productCode,
+      quantityOrdered,
+      priceEach,
+      orderLineNumber FROM orderdetails
+      INNER JOIN products
+      ON orderdetails.productCode = products.productCode'
+    );
+    $sth->execute();
+    if (!is_null($sth->errorInfo()[2]) ) {
+      return array(
+        'success' => false,
+        'description' => $sth->errorInfo()[2]
+      );
+    } else if (empty($sth)) {
+      return array('notFound' => true, 'description' => 'The result is empty');
+    }
+    return array(
+      'success' => true,
+      'description' => 'The orderDetails was found',
+      'orderDetails' => $sth->fetchAll($this->db->pdo::FETCH_ASSOC)
+    );
+  }
+
   function insertOrder($order){
 
     $orderNumber = time();

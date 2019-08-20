@@ -10,7 +10,14 @@
       $message = $this->OrderModel->insertOrder($order);
       return json_encode($message);
     }
-
+    public function getOrders($request, $response) { 
+      $message = $this->OrderModel->getOrders();
+      return json_encode($message);
+    }
+    public function getOrdersDetails($request, $response) {
+      $message = $this->OrderModel->getOrdersDetails();
+      return json_encode($message);
+    }
   }
-
+  
 ?>
